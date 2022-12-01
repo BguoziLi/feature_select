@@ -105,7 +105,7 @@ def usr_sign_up():
 
         # 本地加载已有用户信息,如果没有则已有用户信息为空
         try:
-            with open('usr_info.pickle', 'rb') as usr_file:
+            with open('./user/usr_info.pickle', 'rb') as usr_file:
                 exist_usr_info = pickle.load(usr_file)
         except FileNotFoundError:
             exist_usr_info = {}
@@ -121,7 +121,7 @@ def usr_sign_up():
         # 注册信息没有问题则将用户名密码写入数据库
         else:
             exist_usr_info[nn] = np
-            with open('usr_info.pickle', 'wb') as usr_file:
+            with open('./user/usr_info.pickle', 'wb') as usr_file:
                 pickle.dump(exist_usr_info, usr_file)
             tkinter.messagebox.showinfo('欢迎', '注册成功')
             # 注册成功关闭注册框
