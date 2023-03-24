@@ -17,8 +17,7 @@ models = [rf, rf, gb, xgb, svm, mlp]
 
 def univariate_statistics(df, filename: str):
     filename_split = filename.strip().split('/')[-1].split('.')
-    output_filename = filename_split[0] + '_uni_output' + filename_split[0]
-    print(df.head())
+    output_filename = filename_split[0] + '_uni_output' + filename_split[1]
     X = df.iloc[:, :-1]
     y = df.iloc[:, -1]
     colNames = X.columns.to_list()
@@ -31,7 +30,7 @@ def univariate_statistics(df, filename: str):
 
 def select_from_model(df, p2, filename):
     filename_split = filename.strip().split('/')[-1].split('.')
-    output_filename = filename_split[0] + '_model_output' + filename_split[0]
+    output_filename = filename_split[0] + '_model_output' + filename_split[1]
     X = df.iloc[:, :-1]
     y = df.iloc[:, -1]
     colNames = X.columns.to_list()
@@ -44,7 +43,7 @@ def select_from_model(df, p2, filename):
 
 def select_from_RFECV(df, p2, filename):
     filename_split = filename.strip().split('/')[-1].split('.')
-    output_filename = filename_split[0] + '_RFECV_output' + filename_split[0]
+    output_filename = filename_split[0] + '_RFECV_output' + filename_split[1]
     X = df.iloc[:, :-1]
     y = df.iloc[:, -1]
     colNames = X.columns.to_list()
