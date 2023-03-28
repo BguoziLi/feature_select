@@ -216,13 +216,13 @@ def run1(frame):
         start = time.time()
         if p1 == 0 or p1 == 1:
             output_filename = univariate_statistics(df, filename)
-        elif p2 == 2:
+        elif p1 == 2:
             output_filename = select_from_model(df, p2, filename)
         else:
-            output_filename = select_from_RFECV(df, p2, filename)
+            output_filename = select_from_RFE(df, p2, filename)
         end = time.time()
 
-        header = ["编号", "项目名称", "创建时间", "处理时间", "保存文件"]
+        # header = ["编号", "项目名称", "创建时间", "处理时间", "保存文件"]
         file_path = './info/history.csv'
         # 检查CSV文件是否存在
         if os.path.exists(file_path):
@@ -231,7 +231,7 @@ def run1(frame):
                 reader = csv.reader(file)
                 # 获取数据列表和最大索引值
                 data = [row for row in reader]
-                max_index = max(int(row[0]) for row in data) if len(data) > 1 else 0
+                max_index = max(int(row[0]) for row in data) if len(data) >= 1 else 0
         else:
             max_index = 0
             data = []
@@ -278,14 +278,26 @@ def run2(frame):
 
 def run3(frame):
     frame_clear(frame)
-    lb4 = Label(frame, text='功能三相应模块', fg='black', font='Verdana 12 bold')
-    lb4.place(x=0, y=0, height=500, width=600)
+    documentation = '       本程序需要一定的数据处理能力。在使用程序之前，您需要对数据进行预处理。具体来说，输入数据应该是一个包含 n 列的表格数据，其中前 n-1 ' \
+                    '列是特征值，最后一列是标签。数据预处理的过程应该包括对原始数据的清洗、转换和归一化等步骤，以确保数据的质量和可用性。\n\n' \
+                    '       在数据预处理完成之后，您可以使用程序的特征选择功能来筛选出最具有代表性的特征。特征选择的过程可以使用不同的算法和方法，' \
+                    '具体取决于您的数据和问题。特征选择之后，程序将输出一个包含经过特征选择之后的特征和标签值的文件。这个文件可以方便后续步骤的数据输入和读取。\n\n' \
+                    '       需要注意的是，在进行特征选择之前，您应该考虑数据的特点和问题的需求，并选择适合的特征选择方法。此外，特征选择过程可能会涉及到一些参数的设置和调整，您需要根据实际情况进行调整和优化。 '
+    text = Text(frame, fg='black', font='Verdana 12 bold', padx=50, pady=80)
+    text.insert(END, documentation)
+    text.place(x=0, y=0, width=600, height=500)
 
 
 def run4(frame):
     frame_clear(frame)
-    lb4 = Label(frame, text='功能四相应模块', fg='black', font='Verdana 12 bold')
-    lb4.place(x=0, y=0, height=500, width=600)
+    text = Text(frame, fg='black', font='Verdana 12 bold', padx=100, pady=100)
+    text.insert(END, '作者团队信息：\n')
+    text.insert(END, '学校：云南大学\n')
+    text.insert(END, '成员：康鹏程、邵逸超、李星蓉、张天翊、李承、温浩江\n')
+    text.insert(END, '日期：2023年3月27日\n\n')
+    text.insert(END, 'GitHub地址：https://github.com/BguoziLi/feature_select\n\n')
+    text.insert(END, '如果您对软件有任何疑问或者建议，您都可以通过Issues联系我们\n')
+    text.place(x=0, y=0, width=600, height=500)
 
 
 def run5(frame):
